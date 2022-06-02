@@ -11,10 +11,11 @@ namespace Car_racing
         public Texture2D Tree { get; set; }
         public Vector2 _position;
         public Vector2 _direction;
-        public float _speed = 5;
+        public float _speed;
 
         public Trees(Vector2 position, Vector2 direction)
         {
+            
             _position = position;
             _direction = direction;
         }
@@ -26,6 +27,7 @@ namespace Car_racing
 
         public Trees()
         {
+            _speed = 5;
             RandomSet();
         }
 
@@ -42,14 +44,22 @@ namespace Car_racing
         {
             var rnd = new Random().Next(0, 2);
             if (rnd % 2 == 1)
+            {
                 _position = new Vector2(Racing.GetRandom(650, 670), -240);
+                _direction = new Vector2(0, _speed);
+            }
+
             if (rnd % 2 == 0)
+            {
                 _position = new Vector2(Racing.GetRandom(0, 20), -240);
+                _direction = new Vector2(0, _speed);
+            }
+                
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
-            Racing._spriteBatch.Draw(Tree, _position, Color.White);
+            spriteBatch.Draw(Tree, _position, Color.White);
         }
     }
 }

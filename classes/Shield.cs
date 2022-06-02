@@ -10,14 +10,13 @@ namespace Car_racing
 {
     class Shield
     {
-        public Texture2D Texture { get; set; }
+        public static Texture2D Texture { get; set; }
         public Rectangle _rect;
         public Vector2 _position;
         public Vector2 _direction;
-        public SpriteFont _font;
+        public static SpriteFont _font;
         public int _helth;
         public float _speed;
-        public Racing _racing;
 
         public Shield()
         {

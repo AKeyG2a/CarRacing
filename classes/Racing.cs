@@ -9,26 +9,25 @@ namespace Car_racing
 {
     class Racing
     {
-        public  Player Player { get; set; }
-        public Texture2D Background { get; set; }
-        public int _width, _height;
-        public Random _random = new Random();
-        public SpriteBatch _spriteBatch;
-        public Trees _tree1;
-        public Trees _tree2;
-        public Stone _stone1;
-        public Stone _stone2;
-        public Score _score;
-        public Shield _shield;
-        public ScoreBuster _scoreBuster;
-        public bool _isShieldActive;
-        public bool _isCrash;
-        
+        public static Texture2D Background { get; set; }
+        public static int _width, _height;
+        public static Random _random = new Random();
+        public static SpriteBatch _spriteBatch;
+        public static Trees _tree1;
+        public static Trees _tree2;
+        public static Stone _stone1;
+        public static Stone _stone2;
+        public static Score _score;
+        public static Shield _shield;
+        public static ScoreBuster _scoreBuster;
+        public static bool _isShieldActive;
+        public static bool _isCrash;
+        public static Player Player { get; set; }
         
 
-        public int GetRandom(int min, int max) => _random.Next(min, max);
+        public static int GetRandom(int min, int max) => _random.Next(min, max);
         
-        public void Initialization(int width, int height, SpriteBatch spriteBatch)
+        public static void Initialization(int width, int height, SpriteBatch spriteBatch)
         {
             _width = width;
             _height = height;
@@ -36,18 +35,18 @@ namespace Car_racing
             _tree1 = new Trees(new Vector2(0, -240), new Vector2(0, 5));
             _tree2 = new Trees(new Vector2(655, 60), new Vector2(0, 5));
             Player = new Player(new Vector2(width/2 - 23,height - 180));
-            _stone1 = new Stone(new Vector2(155, -200), new Vector2(0, 5));
-            _stone2 = new Stone(new Vector2(455, -500), new Vector2(0, 5));
-            _scoreBuster = new ScoreBuster(this);
+            _stone1 = new Stone();
+            _stone2 = new Stone();
+            _scoreBuster = new ScoreBuster();
             _shield = new Shield();
             _score = new Score();
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
             _spriteBatch.Draw(Background, Vector2.Zero, Color.White);
-            _tree1.Draw();
-            _tree2.Draw();
+            _tree1.Draw(spriteBatch);
+            _tree2.Draw(spriteBatch);
             _stone1.Draw();
             _stone2.Draw();
             Player.Draw();
@@ -56,7 +55,7 @@ namespace Car_racing
             _shield.Draw();
         }
 
-        public void Update()
+        public static void Update()
         {
             _tree1.Update();
             _tree2.Update();
@@ -77,13 +76,13 @@ namespace Car_racing
             IsStoneIntersect();
         }
 
-        public void GetIsCrash()
+        public static void GetIsCrash()
         {
             if ((Player._rect.Intersects(_stone1._rect) || Player._rect.Intersects(_stone2._rect)) && !_isShieldActive)
                 _isCrash = true;
         }
 
-        public void GetIsScoreBusterActivate()
+        public static void GetIsScoreBusterActivate()
         {
             if (Player._rect.Intersects(_scoreBuster._rect))
             {
@@ -92,7 +91,7 @@ namespace Car_racing
             }
         }
 
-        public void GetIsShieldActive()
+        public static void GetIsShieldActive()
         {
             if (Player._rect.Intersects(_shield._rect))
                 _isShieldActive = true;
@@ -118,7 +117,7 @@ namespace Car_racing
             }
         }
 
-        public void IsStoneIntersect()
+        public static void IsStoneIntersect()
         {
             if (_stone1._rect.Intersects(_stone2._rect))
             {
@@ -127,7 +126,7 @@ namespace Car_racing
             }
         }
 
-        public void RestartGame()
+        public static void RestartGame()
         {
             //_tree1
             _tree1._position = new Vector2(0, -240);
@@ -160,14 +159,14 @@ namespace Car_racing
             _stone2._speed = 5;
 
             //_shield
-            _shield = new Shield();
+            _shield._position = new Vector2(GetRandom(150, 600), GetRandom(-2500, -1500));
             _shield._rect.Y = (int)_shield._position.Y;
             _shield._rect.X = (int)_shield._position.X;
             _shield._helth = 600;
             _shield._speed = 5;
 
             //_scoreBuster
-            _scoreBuster = new ScoreBuster();
+            _scoreBuster._position = new Vector2(GetRandom(150, 600), GetRandom(-1500, -1000));
             _scoreBuster._rect.X = (int)_scoreBuster._position.X;
             _scoreBuster._rect.Y = (int)_scoreBuster._position.Y;
             _scoreBuster._speed = 5;

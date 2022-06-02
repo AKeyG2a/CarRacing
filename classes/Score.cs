@@ -9,7 +9,7 @@ namespace Car_racing
 {
     class Score
     {
-        public SpriteFont _Font { get; set; }
+        public static SpriteFont _Font { get; set; }
 
         public int _Score { get; set; }
 

@@ -12,22 +12,11 @@ namespace Car_racing
         public Vector2 _position;
         public Vector2 _direction;
         public Rectangle _rect;
-        public float _speed = 5;
-
-
-        public Stone(Vector2 pos, Vector2 dir)
-        {
-            _position = pos;
-            _direction = dir;
-        }
-
-        public Stone(Vector2 dir)
-        {
-            _direction = dir;
-        }
+        public float _speed;
 
         public Stone()
         {
+            _speed = 5;
             RandomSet();
         }
 
@@ -49,7 +38,8 @@ namespace Car_racing
 
         public void RandomSet()
         {
-            _position = new Vector2(Racing.GetRandom(150, Racing.Background.Width - 270), -240);
+            _position = new Vector2(Racing.GetRandom(150, Racing.Background.Width - 270), Racing.GetRandom(-800, -240));
+            _direction = new Vector2(0, _speed);
         }
 
         public void Draw()

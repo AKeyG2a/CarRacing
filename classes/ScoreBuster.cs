@@ -9,16 +9,14 @@ namespace Car_racing
 {
     class ScoreBuster
     {
-        public Texture2D Texture { get; set; }
+        public static Texture2D Texture { get; set; }
         public Rectangle _rect;
         public Vector2 _position;
         public Vector2 _direction;
         public float _speed;
-        public Racing _racing;
 
-        public ScoreBuster(Racing racing)
+        public ScoreBuster()
         {
-            _racing = racing;
             _speed = 5;
             SetBuster();
         }
@@ -30,7 +28,7 @@ namespace Car_racing
             _rect.Y = (int)_position.Y;
             _speed = _speed < 7.5 ? _speed * 1.0002f : 7.5f;
             _direction.Y = _speed;
-            if (_position.Y > _racing.Background.Height)
+            if (_position.Y > Racing.Background.Height)
                 SetBuster();
         }
 
@@ -46,7 +44,7 @@ namespace Car_racing
 
         public void SetBuster()
         {
-            _position = new Vector2(_racing.GetRandom(150, 600), _racing.GetRandom(-1500, -1000));
+            _position = new Vector2(Racing.GetRandom(150, 600), Racing.GetRandom(-1500, -1000));
             _direction = new Vector2(0, _speed);
         }
     }
