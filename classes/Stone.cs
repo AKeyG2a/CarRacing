@@ -12,7 +12,7 @@ namespace Car_racing
         public Vector2 _position;
         public Vector2 _direction;
         public Rectangle _rect;
-        private float _speed = 5;
+        public float _speed = 5;
 
 
         public Stone(Vector2 pos, Vector2 dir)
@@ -41,13 +41,13 @@ namespace Car_racing
             _position += _direction;
             _rect.X = (int)_position.X;
             _rect.Y = (int)_position.Y;
-            _speed *= 1.00002f;
+            _speed = _speed < 7.5 ? _speed * 1.0002f : 7.5f;
             _direction.Y = _speed;
-            if (_position.Y - StoneTexture.Height > Racing._height)
+            if (_position.Y > Racing._height)
                 RandomSet();
         }
 
-        private void RandomSet()
+        public void RandomSet()
         {
             _position = new Vector2(Racing.GetRandom(150, Racing.Background.Width - 270), -240);
         }

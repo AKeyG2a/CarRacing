@@ -32,7 +32,7 @@ namespace Car_racing
         public void Update()
         {
             _position += _direction;
-            _speed *= 1.00002f;
+            _speed = _speed < 7.5 ? _speed * 1.0002f : 7.5f;
             _direction.Y = _speed;
             if (_position.Y > Racing._height)
                 RandomSet();

@@ -11,13 +11,14 @@ namespace Car_racing
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         public static Stat _stat = Stat.SplashScreen;
+        public static PauseState pauseState = PauseState.Resume;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            _graphics.ToggleFullScreen();
+            Window.IsBorderless = true;
 
         }
 
@@ -41,11 +42,13 @@ namespace Car_racing
             Score._Font = Content.Load<SpriteFont>("FontForScore");
             EndGame.Background = Content.Load<Texture2D>("BackgroundForGame");
             EndGame.Font = Content.Load<SpriteFont>("SplashFont");
-            Pause.Background = Content.Load<Texture2D>("BackForGame");
-            Pause.Font = Content.Load<SpriteFont>("FontToEndGame");
+            Pause.Background = Content.Load<Texture2D>("BackgroundForGame");
+            Pause.Font = Content.Load<SpriteFont>("SplashFont");
+            Shield.Texture = Content.Load<Texture2D>("shield");
             Racing.Player.SetRect();
             Racing._stone1.SetRect();
             Racing._stone2.SetRect();
+            Racing._shield.SetRect();
 
             // TODO: use this.Content to load your game content here
         }
@@ -53,13 +56,12 @@ namespace Car_racing
         protected override void Update(GameTime gameTime)
         {
             KeyboardState keyboardState = Keyboard.GetState();
+            
 
             switch (_stat)
             {
                 case Stat.SplashScreen:
                     SplashScreen.Update();
-                    if (keyboardState.IsKeyDown(Keys.Enter))
-                        _stat = Stat.Game;
                     break;
                 case Stat.Game:
                     Racing.Update();
@@ -75,31 +77,24 @@ namespace Car_racing
                         Racing.Player.Right();
                     break;
                 case Stat.Final:
-                    if (keyboardState.IsKeyDown(Keys.Escape))
+                    if (keyboardState.IsKeyDown(Keys.Escape) 
+                        || keyboardState.IsKeyDown(Keys.Space))
                         _stat = Stat.SplashScreen;
-                    Racing.RestartGame();
                     break;
                 case Stat.Pause:
-                    Pause.Up();
                     if (keyboardState.IsKeyDown(Keys.Down))
-                    {
-                        Pause.Down();
-                        if (keyboardState.IsKeyDown(Keys.Enter))
-                            _stat = Stat.SplashScreen;
-                    }
+                        pauseState = PauseState.Exit;
 
                     if (keyboardState.IsKeyDown(Keys.Up))
-                    {
+                        pauseState = PauseState.Resume;
+
+                    if (pauseState == PauseState.Exit)
+                        Pause.Down();
+
+                    if (pauseState == PauseState.Resume)
                         Pause.Up();
-                        if (keyboardState.IsKeyDown(Keys.Enter))
-                            _stat = Stat.Game;
-                    }
-                        
                     break;
             }
-
-            /*if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();*/
 
             // TODO: Add your update logic here
             
@@ -125,14 +120,11 @@ namespace Car_racing
                     Pause.Draw(_spriteBatch);
                     break;
             }
-            
             _spriteBatch.End();
 
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
-
-        protected override 
     }
 }

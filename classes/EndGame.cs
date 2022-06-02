@@ -10,9 +10,7 @@ namespace Car_racing
     class EndGame
     {
         public static Texture2D Background { get; set; }
-
         public static SpriteFont Font { get; set; }
-
         public static string _text = "Вы проиграли";
         public static Score _totalScore;
 

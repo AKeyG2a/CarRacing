@@ -35,14 +35,11 @@ namespace Car_racing
                 _position.Y -= _speed;
                 _rect.Y -= _speed;
             }
-                
-
         }
 
         public void Down()
         {
-            if (_position.Y < Racing._height - 105) 
-                
+            if (_position.Y < Racing._height - 105)
             {
                 _position.Y += _speed;
                 _rect.Y += _speed;
@@ -56,8 +53,6 @@ namespace Car_racing
                 _position.X -= _speed;
                 _rect.X -= _speed;
             }
-                
-                
         }
 
         public void Right()
@@ -67,7 +62,6 @@ namespace Car_racing
                 _position.X += _speed;
                 _rect.X += _speed;
             }
-                
         }
     }
 }

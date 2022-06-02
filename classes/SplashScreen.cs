@@ -24,6 +24,8 @@ namespace Car_racing
         { 
             _timeCounter++;
             _color = Color.FromNonPremultiplied(255, 255, 255, _timeCounter % 256);
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                Game1._stat = Stat.Game;
         }
     }
 }
