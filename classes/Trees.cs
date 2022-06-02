@@ -8,7 +8,7 @@ namespace Car_racing
 {
     class Trees
     {
-        public static Texture2D Tree { get; set; }
+        public Texture2D Tree { get; set; }
         public Vector2 _position;
         public Vector2 _direction;
         public float _speed = 5;

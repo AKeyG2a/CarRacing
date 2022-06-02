@@ -9,13 +9,13 @@ namespace Car_racing
 {
     class EndGame
     {
-        public static Texture2D Background { get; set; }
-        public static SpriteFont Font { get; set; }
-        public static string _text = "Вы проиграли";
+        public Texture2D Background { get; set; }
+        public SpriteFont Font { get; set; }
+        public string _text = "Вы проиграли";
         public static Score _totalScore;
 
 
-        public static void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Background, Vector2.Zero, Color.White);
 

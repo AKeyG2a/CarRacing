@@ -7,16 +7,16 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Car_racing
 {
-    static class Pause
+    class Pause
     {
-        public static Texture2D Background { get; set; }
-        public static SpriteFont Font { get; set; }
-        public static Color _firstColor = Color.Gray;
-        public static Color _secondColor = Color.White;
-        private static readonly string _firstText = "Возобновить";
-        private static readonly string _secondText = "Выйти";
+        public Texture2D Background { get; set; }
+        public SpriteFont Font { get; set; }
+        public Color _firstColor = Color.Gray;
+        public Color _secondColor = Color.White;
+        private readonly string _firstText = "Возобновить";
+        private readonly string _secondText = "Выйти";
 
-        public static void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Background, Vector2.Zero, Color.White);
 
@@ -45,7 +45,7 @@ namespace Car_racing
                 );
         }
 
-        public static void Up()
+        public void Up()
         {
             _firstColor = Color.Gray;
             _secondColor = Color.White;
@@ -53,7 +53,7 @@ namespace Car_racing
                 Game1._stat = Stat.Game;
         }
 
-        public static void Down()
+        public void Down()
         {
             _secondColor = Color.Gray;
             _firstColor = Color.White;

@@ -10,27 +10,19 @@ namespace Car_racing
 {
     class Shield
     {
-        public static Texture2D Texture { get; set; }
+        public Texture2D Texture { get; set; }
         public Rectangle _rect;
         public Vector2 _position;
         public Vector2 _direction;
-        public int _helth = 600;
-        public float _speed = 5;
-
-        public Shield(Vector2 position, Vector2 direction)
-        {
-            _position = position;
-            _direction = direction;
-        }
-
-        public Shield(Vector2 direction)
-        {
-            _direction = direction;
-            SetShield();
-        }
+        public SpriteFont _font;
+        public int _helth;
+        public float _speed;
+        public Racing _racing;
 
         public Shield()
         {
+            _helth = 600;
+            _speed = 5;
             SetShield();
         }
 
@@ -51,7 +43,6 @@ namespace Car_racing
                 _helth--;
                 SetShield();
             }
-                
             
             if (_position.Y > Racing.Background.Height)
                 SetShield();
@@ -61,7 +52,7 @@ namespace Car_racing
         {
             Racing._spriteBatch.Draw(Texture, _position, Color.White);
             if (Racing._isShieldActive)
-                Racing._spriteBatch.DrawString(Score._Font, (_helth / 60 + 1).ToString(), new Vector2(750, 5), Color.White);
+                Racing._spriteBatch.DrawString(_font, (_helth / 60 + 1).ToString(), new Vector2(750, 5), Color.White);
         }
 
         private void SetShield()

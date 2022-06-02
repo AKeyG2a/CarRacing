@@ -7,20 +7,20 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Car_racing
 {
-    static class SplashScreen
+    class SplashScreen
     {
-        public static Texture2D Background { get; set; }
-        private static int _timeCounter = 0;
-        private static Color _color = Color.White;
-        public static SpriteFont Font { get; set; }
+        public Texture2D Background { get; set; }
+        private int _timeCounter = 0;
+        private Color _color = Color.White;
+        public SpriteFont Font { get; set; }
 
-        public static void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Background, Vector2.Zero, Color.White);
             spriteBatch.DrawString(Font,"Старт", new Vector2(20, 20), _color);
         }
 
-        public static void Update()
+        public void Update()
         { 
             _timeCounter++;
             _color = Color.FromNonPremultiplied(255, 255, 255, _timeCounter % 256);

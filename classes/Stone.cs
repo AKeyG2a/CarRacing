@@ -8,7 +8,7 @@ namespace Car_racing
 {
     class Stone
     {
-        public static Texture2D StoneTexture { get; set; }
+        public Texture2D StoneTexture { get; set; }
         public Vector2 _position;
         public Vector2 _direction;
         public Rectangle _rect;
