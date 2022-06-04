@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Car_racing
 {
-    class Pause
+    public class Pause
     {
         public Texture2D Background { get; set; }
         public SpriteFont Font { get; set; }
@@ -59,8 +59,9 @@ namespace Car_racing
             _firstColor = Color.White;
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
-                Game1._stat = Stat.Game;
-                Racing._isCrash = true;
+                Racing.RestartGame();
+                Game1._stat = Stat.SplashScreen;
+
             }
                 
         }

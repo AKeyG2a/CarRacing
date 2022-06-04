@@ -7,18 +7,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Car_racing
 {
-    public class ScoreBuster
+    public class SuperStone
     {
-        public static Texture2D Texture { get; set; }
-        public Rectangle _rect;
+        public Texture2D Texture { get; set; }
+        public SpriteFont Font { get; set; }
         public Vector2 _position;
         public Vector2 _direction;
-        public float _speed;
+        public Rectangle _rect;
+        public float _speed = 8;
 
-        public ScoreBuster()
+        public SuperStone()
         {
-            _speed = 5;
-            SetBuster();
+            SetSuperStone();
         }
 
         public void Update()
@@ -26,15 +26,16 @@ namespace Car_racing
             _position += _direction;
             _rect.X = (int)_position.X;
             _rect.Y = (int)_position.Y;
-            _speed = _speed < 7.5 ? _speed * 1.0002f : 7.5f;
-            _direction.Y = _speed;
             if (_position.Y > Racing.Background.Height)
-                SetBuster();
+                SetSuperStone();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, _position, Color.White);
+            if (_position.Y > -1000 && _position.Y < -200)
+                spriteBatch.DrawString(Font, "Внимание, впереди опасность!", new Vector2(
+                    Racing._width / 2 - Font.MeasureString("Внимание, впереди опасность!").X / 2, 5), Color.White);
         }
 
         public void SetRect()
@@ -42,9 +43,9 @@ namespace Car_racing
             _rect = new Rectangle((int)_position.X, (int)_position.Y, Texture.Width, Texture.Height);
         }
 
-        public void SetBuster()
+        public void SetSuperStone()
         {
-            _position = new Vector2(Racing.GetRandom(150, 600), Racing.GetRandom(-1500, -1000));
+            _position = new Vector2(Racing.GetRandom(150, 550), Racing.GetRandom(-10000, -6000));
             _direction = new Vector2(0, _speed);
         }
     }

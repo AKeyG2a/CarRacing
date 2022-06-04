@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Car_racing
 {
-    class Stone
+    public class Stone
     {
         public Texture2D StoneTexture { get; set; }
         public Vector2 _position;

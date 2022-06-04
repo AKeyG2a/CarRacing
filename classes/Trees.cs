@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Car_racing
 {
-    class Trees
+    public class Trees
     {
         public Texture2D Tree { get; set; }
         public Vector2 _position;

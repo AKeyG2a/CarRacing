@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Car_racing
 {
-    class Racing
+    public class Racing
     {
         public static Texture2D Background { get; set; }
         public static int _width, _height;
@@ -17,6 +17,8 @@ namespace Car_racing
         public static Trees _tree2;
         public static Stone _stone1;
         public static Stone _stone2;
+        public static Stone _stone3;
+        public static SuperStone _superStone;
         public static Score _score;
         public static Shield _shield;
         public static ScoreBuster _scoreBuster;
@@ -32,11 +34,13 @@ namespace Car_racing
             _width = width;
             _height = height;
             _spriteBatch = spriteBatch;
-            _tree1 = new Trees(new Vector2(0, -240), new Vector2(0, 5));
-            _tree2 = new Trees(new Vector2(655, 60), new Vector2(0, 5));
+            _tree1 = new Trees();
+            _tree2 = new Trees();
             Player = new Player(new Vector2(width/2 - 23,height - 180));
             _stone1 = new Stone();
             _stone2 = new Stone();
+            _stone3 = new Stone();
+            _superStone = new SuperStone();
             _scoreBuster = new ScoreBuster();
             _shield = new Shield();
             _score = new Score();
@@ -49,6 +53,8 @@ namespace Car_racing
             _tree2.Draw(spriteBatch);
             _stone1.Draw();
             _stone2.Draw();
+            _stone3.Draw();
+            _superStone.Draw(spriteBatch);
             Player.Draw();
             _scoreBuster.Draw(spriteBatch);
             _score.Draw(spriteBatch);
@@ -61,6 +67,8 @@ namespace Car_racing
             _tree2.Update();
             _stone1.Update();
             _stone2.Update();
+            _stone3.Update();
+            _superStone.Update();
             _score.Update();
             _shield.Update();
             _scoreBuster.Update();
@@ -78,7 +86,10 @@ namespace Car_racing
 
         public static void GetIsCrash()
         {
-            if ((Player._rect.Intersects(_stone1._rect) || Player._rect.Intersects(_stone2._rect)) && !_isShieldActive)
+            if ((Player._rect.Intersects(_stone1._rect) || Player._rect.Intersects(_stone2._rect) || Player._rect.Intersects(_stone3._rect)) && !_isShieldActive)
+                _isCrash = true;
+
+            if (Player._rect.Intersects(_superStone._rect))
                 _isCrash = true;
         }
 
@@ -115,6 +126,13 @@ namespace Car_racing
                 _shield._helth = 600;
                 _isShieldActive = false;
             }
+
+            if (_isShieldActive && Player._rect.Intersects(_stone3._rect))
+            {
+                _stone3.RandomSet();
+                _shield._helth = 600;
+                _isShieldActive = false;
+            }
         }
 
         public static void IsStoneIntersect()
@@ -124,6 +142,25 @@ namespace Car_racing
                 _stone1.RandomSet();
                 _stone2.RandomSet();
             }
+
+            if (_stone1._rect.Intersects(_stone3._rect))
+            {
+                _stone1.RandomSet();
+                _stone3.RandomSet();
+            }
+
+            if (_stone3._rect.Intersects(_stone2._rect))
+            {
+                _stone3.RandomSet();
+                _stone2.RandomSet();
+            }
+
+            if (_superStone._rect.Intersects(_stone1._rect))
+                _stone1.RandomSet();
+            if (_superStone._rect.Intersects(_stone2._rect))
+                _stone2.RandomSet();
+            if (_superStone._rect.Intersects(_stone3._rect))
+                _stone3.RandomSet();
         }
 
         public static void RestartGame()
@@ -157,6 +194,19 @@ namespace Car_racing
             _stone2._rect.X = (int)_stone2._position.X;
             _stone2._rect.Y = (int)_stone2._position.Y;
             _stone2._speed = 5;
+
+            //stone3
+            _stone3._position = new Vector2(455, -500);
+            _stone3._direction = new Vector2(0, 5);
+            _stone3._rect.X = (int)_stone2._position.X;
+            _stone3._rect.Y = (int)_stone2._position.Y;
+            _stone3._speed = 5;
+
+            //superStone
+            _superStone._position =
+                new Vector2(GetRandom(150, 650 - _superStone.Texture.Width), GetRandom(-5000, -3000));
+            _superStone._rect.X = (int)_superStone._position.X;
+            _superStone._rect.Y = (int)_superStone._position.Y;
 
             //_shield
             _shield._position = new Vector2(GetRandom(150, 600), GetRandom(-2500, -1500));

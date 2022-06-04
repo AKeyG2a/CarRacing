@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Car_racing
 {
-    class Score
+    public class Score
     {
         public static SpriteFont _Font { get; set; }
 

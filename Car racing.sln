@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car racing", "Car racing.csproj", "{0F4C4972-20F4-4B08-8326-C2FCF4F6C32E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Car racing", "Car racing.csproj", "{0F4C4972-20F4-4B08-8326-C2FCF4F6C32E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests1", "..\tests1\tests1.csproj", "{E582318E-2184-478D-A136-E318A51A0F73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0F4C4972-20F4-4B08-8326-C2FCF4F6C32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F4C4972-20F4-4B08-8326-C2FCF4F6C32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F4C4972-20F4-4B08-8326-C2FCF4F6C32E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E582318E-2184-478D-A136-E318A51A0F73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E582318E-2184-478D-A136-E318A51A0F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E582318E-2184-478D-A136-E318A51A0F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E582318E-2184-478D-A136-E318A51A0F73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

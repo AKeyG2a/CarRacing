@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Car_racing
 {
-    class SplashScreen
+    public class SplashScreen
     {
         public Texture2D Background { get; set; }
         private int _timeCounter = 0;

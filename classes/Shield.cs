@@ -8,13 +8,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Car_racing
 {
-    class Shield
+    public class Shield
     {
-        public static Texture2D Texture { get; set; }
+        public Texture2D Texture { get; set; }
         public Rectangle _rect;
         public Vector2 _position;
         public Vector2 _direction;
-        public static SpriteFont _font;
+        public SpriteFont _font;
         public int _helth;
         public float _speed;
 

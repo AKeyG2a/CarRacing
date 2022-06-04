@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Car_racing
 {
-    class Player
+    public class Player
     {
         public Texture2D PlayerCar { get; set; }
         public Vector2 _position;

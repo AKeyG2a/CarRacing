@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Car_racing
 {
-    class EndGame
+    public class EndGame
     {
         public Texture2D Background { get; set; }
         public SpriteFont Font { get; set; }
